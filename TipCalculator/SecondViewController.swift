@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var tenPercentTipLabel: UILabel!
@@ -17,6 +17,7 @@ class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        amountTextField.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -35,6 +36,14 @@ class SecondViewController: UIViewController {
         fifteenPercentTipLabel.text = String(fifteenPercentOfAmount)
         twentyPercentTipLabel.text = String(twentyPercentOfAmount)
         
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
     /*
